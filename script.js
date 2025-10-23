@@ -11,15 +11,12 @@ function createMission(nazwaMisji, typMisji) {
 
 }
 
-const misja = createMission("Ekspedycja na księżyc", "Badawcze")
-
-
-function dodanieDoZalogi(misja, zaloga) {
-    misja.zaloga.push(zaloga)
+function dodanieDoZalogi(createMission, zaloga) {
+    createMission.zaloga.push(zaloga)
 }
 
-function dodanieSprzetu(misja, spszet) {
-    misja.spszet.push(spszet)
+function dodanieSprzetu(createMission, spszet) {
+    createMission.spszet.push(spszet)
 }
 
 
@@ -29,33 +26,33 @@ function mirzenieDystansu(misja) {
 }
 
 function iloscZapasow(misja) {
-    const Ilosc = misja.zapasy
+    const Ilosc = createMission.zapasy
     zapasy.dystans = Ilosc + 20
 }
-
-
-
-
 
 function wyswetlMisje(misja) {
     // console.log(misja)
     // console.log("*** RAPORT MISJI: " + misja.nazwa + " ***")
     console.log(`
-        *** RAPORT MISJI: ${misja.nazwa} ***
-        Typ misji: ${misja.typ}
-        Przebyty dystans: ${misja.dystans}
-        Pozostałe zapasy: ${misja.zapasy}
+*** RAPORT MISJI: ${misja.nazwa} ***
 
-        --- ZAŁOGA ---
-        ${misja.zaloga}
+Typ misji: ${misja.typ}
+Przebyty dystans: ${misja.dystans}
+Pozostałe zapasy: ${misja.zapasy}
+
+--- ZAŁOGA ---
+${misja.zaloga.map((zaloga) => "- " + zaloga).join("\n")}
         
 
-        --- SPRZĘT W ŁADOWNI ---
-        ${misja.spszet}
+--- SPRZĘT W ŁADOWNI ---
+${misja.spszet.map((spszet) => "- " + spszet).join("\n")}
 
         `)
+        
 
 }
+
+const misja = createMission("Ekspedycja na księżyc", "Badawcze")
 
 
 
@@ -63,3 +60,8 @@ function wyswetlMisje(misja) {
 
 // console.log("*** RAPORT MISJI: " + misja.nazwa + " ***")
 wyswetlMisje(misja)
+
+mirzenieDystansu(misja)
+
+wyswetlMisje(misja)
+
